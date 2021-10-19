@@ -58,6 +58,7 @@ resource "aws_security_group" "jhlee_allow_http" {
     Name = "jhlee-allow-http-ssh"
   }
 }
+/*
 resource "aws_security_group" "jhlee_allow_mysql" {
   name        = "allow_mysql"
   description = "Allow mysql inbound traffic"
@@ -95,3 +96,4 @@ resource "aws_security_group" "jhlee_allow_mysql" {
     Name = "jhlee-allow-rds"
   }
 }
+*/

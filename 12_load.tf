@@ -4,6 +4,7 @@ resource "aws_lb" "jhlee_lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.jhlee_allow_http.id]
   subnets            = [aws_subnet.jhlee_puba.id,aws_subnet.jhlee_pubc.id]
+
 /*
   enable_deletion_protection = true
 

@@ -7,16 +7,20 @@ resource "aws_instance" "jhlee_web_a1" {
   key_name = "tf-key-pair-cli"
   availability_zone="ap-northeast-2a"
   private_ip = "192.168.0.11"
-  associate_public_ip_address = true
+  user_data = file("./wordpress.sh")
   
-  security_groups = [aws_security_group.jhlee_allow_http.id]
-  
-  user_data = file("./install.sh")
-
- 
-
+  #security_groups = [aws_security_group.jhlee_allow_http.id]
+  vpc_security_group_ids = [aws_security_group.jhlee_allow_http.id]
   tags = {
     Name = "web-a1"
   
   }
+}
+resource "aws_eip" "jhlee_eip"{
+
+  vpc = true
+  instance = aws_instance.jhlee_web_a1.id
+  associate_with_private_ip = "192.168.0.11"
+  depends_on = [aws_internet_gateway.jhlee_ig]
+
 }

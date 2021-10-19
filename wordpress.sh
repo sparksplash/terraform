@@ -10,6 +10,11 @@ yum install -y php php-cli php-mysql
 
 wget https://ko.wordpress.org/latest-ko_KR.tar.gz
 tar -xzf latest-ko_KR.tar.gz
+
+cat > /var/www/html/health.html << end
+<html><body><h1>healthy</h1></body></html>
+end
+
 cp -a wordpress/* /var/www/html/
 cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 
@@ -42,3 +47,6 @@ sed -i '55 i\define("AUTH_SALT",        "FC=xS:x+/?M])4Kjt~m*7ys[J92CwQ&Sv9SP[7_
 sed -i '56 i\define("SECURE_AUTH_SALT", "?`(ATb,+(X|P/G(O`/bweK+}iX9^1v6@Q2g:zm30#umb[$X?9kne9rK~c #(N=5~");' /var/www/html/wp-config.php
 sed -i '57 i\define("LOGGED_IN_SALT",   ";R[pT6C<eiZ}zaH-&=)OW6bnCn0m&6h@gMg8gR&ju25Z,+h?|[C)1>8rb?E>V1+S");' /var/www/html/wp-config.php
 sed -i '58 i\define("NONCE_SALT",       "a/ h~L(vW>cx-2kP<qV+&$62`g45aAW<5MHkk!bbgX@49vh(6s|uq!M$<_Y{c^%{");' /var/www/html/wp-config.php
+
+touch /var/www/html/health.html
+echo <html><body><h1>healthy</h1></body></html> >> /var/www/html/health.html
